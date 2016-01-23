@@ -83,6 +83,9 @@ public abstract class AbstractConnection extends Thread {
 	public void forceOutgoingPacket(final Packet packet) throws IOException {
 		StreamUtils.writeBlockToStream(output, packet.toBytes());
 	}
+	
+	@Override
+	public abstract void run(); // Force run implementation.
 
 	public String getIP() {
 		return ip;
