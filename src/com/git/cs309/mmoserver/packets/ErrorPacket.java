@@ -9,6 +9,12 @@ public class ErrorPacket extends Packet {
 	private final int errorCode;
 	private final String errorMessage;
 
+	public ErrorPacket(final AbstractConnection destination, final int errorCode, final String errorMessage) {
+		super(destination);
+		this.errorCode = errorCode;
+		this.errorMessage = errorMessage;
+	}
+
 	public ErrorPacket(final byte[] bytes, final AbstractConnection source) {
 		super(source);
 		int index = 1;
@@ -18,12 +24,6 @@ public class ErrorPacket extends Packet {
 			buffer += (char) bytes[index];
 		}
 		errorMessage = buffer;
-	}
-
-	public ErrorPacket(final AbstractConnection destination, final int errorCode, final String errorMessage) {
-		super(destination);
-		this.errorCode = errorCode;
-		this.errorMessage = errorMessage;
 	}
 
 	public int getErrorCode() {

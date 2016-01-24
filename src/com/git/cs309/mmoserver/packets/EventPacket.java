@@ -10,14 +10,19 @@ public class EventPacket extends Packet {
 		super(source);
 		this.eventCode = eventCode;
 	}
-	
+
 	public EventPacket(final byte[] bytes, final AbstractConnection source) {
 		super(source);
 		this.eventCode = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | bytes[4];
 	}
-	
+
 	public int getEventCode() {
 		return eventCode;
+	}
+
+	@Override
+	public PacketType getPacketType() {
+		return PacketType.EVENT_PACKET;
 	}
 
 	@Override
@@ -29,11 +34,6 @@ public class EventPacket extends Packet {
 		bytes[3] = (byte) ((eventCode >> 8) & 0xFF);
 		bytes[4] = (byte) (eventCode & 0xFF);
 		return bytes;
-	}
-
-	@Override
-	public PacketType getPacketType() {
-		return PacketType.EVENT_PACKET;
 	}
 
 }

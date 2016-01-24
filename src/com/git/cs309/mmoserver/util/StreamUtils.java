@@ -6,9 +6,9 @@ import java.io.OutputStream;
 
 public final class StreamUtils {
 	public static final byte EOF_CHARACTER = -1;
-	
+
 	public static final int MAX_PACKET_BYTES = 1000;
-	
+
 	public static byte[] readBlockFromStream(final InputStream input)
 			throws EndOfStreamReachedException, IOException, CorruptDataException {
 		byte checksum = (byte) input.read();

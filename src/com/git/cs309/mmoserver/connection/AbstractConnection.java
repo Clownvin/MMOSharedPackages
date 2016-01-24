@@ -18,7 +18,7 @@ public abstract class AbstractConnection extends Thread {
 	protected volatile boolean disconnected = false;
 	protected volatile Packet packet; // Making this volatile should allow for other threads to access it properly, as well as be changed by this thread properly.
 	protected volatile List<Packet> outgoingPackets = new ArrayList<>(10);
-	
+
 	protected volatile Thread outgoingThread = new Thread() {
 		@Override
 		public void run() {
@@ -83,9 +83,6 @@ public abstract class AbstractConnection extends Thread {
 	public void forceOutgoingPacket(final Packet packet) throws IOException {
 		StreamUtils.writeBlockToStream(output, packet.toBytes());
 	}
-	
-	@Override
-	public abstract void run(); // Force run implementation.
 
 	public String getIP() {
 		return ip;
@@ -99,6 +96,9 @@ public abstract class AbstractConnection extends Thread {
 	public boolean isDisconnected() {
 		return disconnected;
 	}
+
+	@Override
+	public abstract void run(); // Force run implementation.
 
 	@Override
 	public String toString() {

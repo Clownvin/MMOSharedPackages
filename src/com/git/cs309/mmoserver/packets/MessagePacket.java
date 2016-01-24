@@ -11,6 +11,12 @@ public class MessagePacket extends Packet {
 	private final byte messageCode;
 	private final String message;
 
+	public MessagePacket(final AbstractConnection destination, final byte messageCode, final String message) {
+		super(destination);
+		this.message = message;
+		this.messageCode = messageCode;
+	}
+
 	public MessagePacket(final byte[] buffer, final AbstractConnection source) {
 		super(source);
 		messageCode = buffer[1];
@@ -21,16 +27,10 @@ public class MessagePacket extends Packet {
 		message = String.valueOf(chars);
 	}
 
-	public MessagePacket(final AbstractConnection destination, final byte messageCode, final String message) {
-		super(destination);
-		this.message = message;
-		this.messageCode = messageCode;
-	}
-
 	public String getMessage() {
 		return message;
 	}
-	
+
 	public byte getMessageCode() {
 		return messageCode;
 	}

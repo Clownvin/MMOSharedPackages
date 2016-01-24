@@ -5,6 +5,12 @@ import com.git.cs309.mmoserver.connection.AbstractConnection;
 public class LoginPacket extends Packet {
 	private final String username, password;
 
+	public LoginPacket(final AbstractConnection connection, final String username, final String password) {
+		super(connection);
+		this.username = username;
+		this.password = password;
+	}
+
 	public LoginPacket(final byte[] bytes, final AbstractConnection connection) {
 		super(connection);
 		int index = 1;
@@ -19,12 +25,6 @@ public class LoginPacket extends Packet {
 			charBuffer[i] = (char) bytes[index++];
 		}
 		this.password = String.valueOf(charBuffer);
-	}
-
-	public LoginPacket(final AbstractConnection connection, final String username, final String password) {
-		super(connection);
-		this.username = username;
-		this.password = password;
 	}
 
 	@Override
