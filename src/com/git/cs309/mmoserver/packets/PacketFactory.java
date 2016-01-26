@@ -18,6 +18,8 @@ public final class PacketFactory {
 			return new EventPacket(bytes, source);
 		case 5:
 			return new EntityUpdatePacket(bytes, source);
+		case 6:
+			return new TestPacket(source, bytes);
 		default:
 			System.out.println("No case for type: " + bytes[0]);
 			return null;

@@ -25,11 +25,11 @@ public final class StreamUtils {
 		}
 		int size = (buffer[0] << 24) | (buffer[1] << 16) | (buffer[2] << 8) | (buffer[3]);
 		if (size < 0) {
-			throw new IOException("Negative block size read from stream.");
+			throw new NegativeArraySizeException("Negative block size read from stream.");
 		}
 		buffer = new byte[size];
 		if (buffer.length >= MAX_PACKET_BYTES) {
-			throw new IOException("Block size read from stream was too large.");
+			throw new ArrayIndexOutOfBoundsException("Block size read from stream was too large.");
 		}
 		for (int i = 0; i < buffer.length; i++) {
 			buffer[i] = (byte) input.read();
